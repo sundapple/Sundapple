@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Sundapple</title>
+<link rel="icon" href="/img/favicon.ico" sizes="32x32">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/img/site.webmanifest">
+<meta name="description" content="That page doesn't exist. Head back to Sundapple, or jump to Fishion, support, and the legal pages.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#EEF2F0">
+<script>(function(){try{var t=localStorage.getItem('sundapple-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page not found — Sundapple">
+<meta property="og:description" content="That page doesn't exist. Head back to Sundapple, or jump to Fishion, support, and the legal pages.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#16232B;
+    --ink-soft:#3C4A50;
+    --paper:#EEF2F0;
+    --paper-raised:#FFFFFF;
+    --gold:#E3A13B;
+    --pine:#2F5D50;
+    --line:#C7D2CC;
+    --line-strong:#9FB0A8;
+    --nav-bg:238,242,240;
+    --shadow-c:22,35,43;
+  }
+
+  :root[data-theme="dark"]{
+    --ink:#EBF1EE;
+    --ink-soft:#9FB2AC;
+    --paper:#10171A;
+    --paper-raised:#1A2427;
+    --gold:#F0B65A;
+    --pine:#5FC2A1;
+    --line:#2A3A38;
+    --line-strong:#3E534E;
+    --nav-bg:16,23,26;
+    --shadow-c:0,0,0;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    transition:background .25s ease, color .25s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;width:100%;}
+
+  a{color:inherit;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(var(--nav-bg),0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+    gap:20px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces',serif; font-weight:600; font-size:20px;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+  .logo svg{display:block;}
+  nav .links{
+    display:flex; align-items:center; gap:32px;
+    font-size:14px; font-weight:500;
+    letter-spacing:0.02em;
+  }
+  nav .links a{
+    text-decoration:none; color:var(--ink-soft);
+    padding:4px 0;
+    transition:color .2s ease;
+    white-space:nowrap;
+  }
+  nav .links a:hover{color:var(--ink);}
+
+  nav .links a:focus-visible, .logo:focus-visible, .icon-btn:focus-visible,
+  .port:focus-visible, .primary:focus-visible{
+    outline:2px solid var(--pine); outline-offset:3px; border-radius:2px;
+  }
+
+  .icon-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    color:var(--ink);
+    cursor:pointer;
+    flex-shrink:0;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .icon-btn:hover{border-color:var(--line-strong); transform:translateY(-1px);}
+  .icon-btn svg{width:17px; height:17px;}
+  [data-theme="light"] .icon-moon{display:none;}
+  [data-theme="dark"] .icon-sun{display:none;}
+
+  /* ---------- Hero ---------- */
+  main{flex:1 0 auto;}
+
+  .hero{padding:96px 0 0;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--pine); margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--pine); display:inline-block;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(40px, 6.4vw, 72px);
+    line-height:1.0;
+    letter-spacing:-0.02em;
+    max-width:14ch;
+  }
+  h1 em{
+    font-style:italic; font-weight:500; color:var(--pine);
+  }
+  .lede{
+    margin-top:24px;
+    max-width:46ch;
+    font-size:19px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- The cast ---------- */
+  .scene{
+    position:relative;
+    height:280px;
+    margin-top:40px;
+  }
+  .water{
+    position:absolute; left:0; bottom:0;
+    width:100%; height:120px;
+    display:block;
+  }
+  .water path{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:1.4;
+    stroke-linecap:round;
+    stroke-dasharray:1200;
+    stroke-dashoffset:1200;
+    animation:draw 1.7s cubic-bezier(.4,0,.2,1) forwards .15s;
+  }
+  .rig{
+    position:absolute; bottom:72px; left:50%;
+    width:104px; height:177px;
+    margin-left:-52px;
+    display:block;
+    overflow:visible;
+  }
+  .rig .filament{
+    fill:none;
+    stroke:var(--line-strong);
+    stroke-width:1.1;
+    stroke-linecap:round;
+    stroke-dasharray:118;
+    stroke-dashoffset:118;
+    animation:draw .9s cubic-bezier(.4,0,.2,1) forwards .35s;
+  }
+  .rig .hook{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:2.4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .rig .tackle{
+    transform-box:view-box;
+    transform-origin:50px 120px;
+    opacity:0;
+    animation:settle .5s cubic-bezier(.4,0,.2,1) forwards 1.05s,
+              bob 4.6s ease-in-out 1.6s infinite;
+  }
+
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes settle{
+    from{opacity:0; transform:translateY(-9px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(4px) rotate(1.1deg);}
+  }
+
+  /* ---------- Where to go ---------- */
+  .ports-section{padding:72px 0 96px;}
+
+  h2{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; font-weight:500;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+  }
+
+  .ports{border-bottom:1px solid var(--line);}
+
+  .port{
+    display:grid;
+    grid-template-columns:210px 1fr 24px;
+    gap:24px;
+    align-items:baseline;
+    padding:20px 6px;
+    border-top:1px solid var(--line);
+    text-decoration:none;
+    color:var(--ink);
+  }
+
+  .port-name{
+    font-family:'Fraunces',serif;
+    font-weight:600; font-size:19px;
+    letter-spacing:-0.01em;
+    transition:color .2s ease;
+  }
+  .port:hover .port-name{color:var(--pine);}
+
+  .port-desc{
+    font-size:15px;
+    color:var(--ink-soft);
+  }
+
+  .port-arrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:15px;
+    color:var(--ink-soft);
+    justify-self:end;
+    transition:transform .22s ease, color .2s ease;
+  }
+  .port:hover .port-arrow{transform:translateX(4px); color:var(--pine);}
+
+  .primary{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-top:34px;
+    background:var(--ink); color:var(--paper);
+    padding:12px 22px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:15px; font-weight:600; letter-spacing:-0.01em;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .primary svg{width:16px; height:16px; flex-shrink:0;}
+  .primary:hover{background:var(--pine); transform:translateY(-2px);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+    flex-shrink:0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  footer .logo{font-size:16px;}
+  footer .meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; color:var(--ink-soft);
+    letter-spacing:0.03em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:720px){
+    .wrap{padding:0 22px;}
+    .hero{padding-top:64px;}
+    .scene{height:240px;}
+    .rig{width:84px; height:143px; margin-left:-42px; bottom:68px;}
+    .ports-section{padding:56px 0 72px;}
+    .port{
+      grid-template-columns:1fr 24px;
+      gap:6px 16px;
+      padding:18px 4px;
+    }
+    .port-desc{grid-column:1;}
+    .port-arrow{grid-row:1 / span 2; align-self:center;}
+  }
+
+  @media (max-width:640px){
+    nav.wrap{height:auto; padding-top:14px; padding-bottom:14px; flex-wrap:wrap;}
+    nav .links{order:3; width:100%; gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="/" class="logo">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="13" cy="10" r="6" fill="#E3A13B"/>
+        <path d="M2 20C6 16.5 20 16.5 24 20" stroke="#2F5D50" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Sundapple
+    </a>
+    <div class="links">
+      <a href="/#fishion">Fishion</a>
+      <a href="/#more">More apps</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M12 2.5V5M12 19V21.5M21.5 12H19M5 12H2.5M18.4 5.6L16.6 7.4M7.4 16.6L5.6 18.4M18.4 18.4L16.6 16.6M7.4 7.4L5.6 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.7 6.7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow">Error 404</p>
+    <h1>Nothing biting <em>here.</em></h1>
+    <p class="lede">This page doesn't exist — the link may be old, or the address may have a typo in it. Everything else is still where you left it.</p>
+
+    <div class="scene" aria-hidden="true">
+      <svg class="rig" viewBox="0 0 100 170" xmlns="http://www.w3.org/2000/svg">
+        <path class="filament" d="M50 0 C50 46, 47 88, 50 115"/>
+        <g class="tackle">
+          <g class="hook">
+            <circle cx="50" cy="120" r="5"/>
+            <path d="M50 125 L50 146"/>
+            <path d="M50 146 C50 160, 44 168, 35 165 C26 162, 23 152, 27 143"/>
+            <path d="M27 143 L33 150"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="water" viewBox="0 0 1000 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 64 C 150 44, 260 86, 400 64 S 620 42, 760 68 S 900 86, 1000 60"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="ports-section wrap">
+    <h2>Where to go instead</h2>
+
+    <div class="ports">
+      <a class="port" href="/">
+        <span class="port-name">Home</span>
+        <span class="port-desc">Sundapple, and what we're building.</span>
+        <span class="port-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="port" href="/#fishion">
+        <span class="port-name">Fishion</span>
+        <span class="port-desc">Track your catch. Read the water.</span>
+        <span class="port-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="port" href="/support.html">
+        <span class="port-name">Support</span>
+        <span class="port-desc">Get help, report a bug, or send an idea.</span>
+        <span class="port-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="port" href="/privacy.html">
+        <span class="port-name">Privacy Policy</span>
+        <span class="port-desc">What Fishion collects, and what it doesn't.</span>
+        <span class="port-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="port" href="/terms.html">
+        <span class="port-name">Terms of Use</span>
+        <span class="port-desc">The rules for using Fishion.</span>
+        <span class="port-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+    <a class="primary" href="/">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Sundapple
+    </a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/" class="logo">
+      <svg width="22" height="22" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="13" cy="10" r="6" fill="#E3A13B"/>
+        <path d="M2 20C6 16.5 20 16.5 24 20" stroke="#2F5D50" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Sundapple
+    </a>
+    <span class="meta">sundappleapp.com &middot; &copy; 2026 &middot; <a href="/privacy.html" style="color:inherit;">Privacy</a> &middot; <a href="/terms.html" style="color:inherit;">Terms</a> &middot; <a href="/support.html" style="color:inherit;">Support</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var themeToggle = document.getElementById('themeToggle');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(mode, persist){
+    document.documentElement.setAttribute('data-theme', mode);
+    if(themeMeta){ themeMeta.setAttribute('content', mode === 'dark' ? '#10171A' : '#EEF2F0'); }
+    if(persist){ try{ localStorage.setItem('sundapple-theme', mode); }catch(e){} }
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
+
+  themeToggle.addEventListener('click', function(){
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    applyTheme(isDark ? 'light' : 'dark', true);
+  });
+})();
+</script>
+
+</body>
+</html>
