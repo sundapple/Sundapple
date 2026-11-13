@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sundapple — Apps for people who'd rather be outside</title>
+<meta name="description" content="Sundapple makes small, focused apps for people who'd rather be outside. Featuring Fishion, an AI fishing companion and catch log, available now on the App Store for iPhone.">
+<link rel="canonical" href="https://sundappleapp.com/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#EEF2F0">
+<meta name="apple-itunes-app" content="app-id=6799890725">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sundappleapp.com/#org",
+      "name": "Sundapple",
+      "url": "https://sundappleapp.com/",
+      "logo": "https://sundappleapp.com/apple-touch-icon.png",
+      "email": "fishion@sundappleapp.com",
+      "sameAs": ["https://x.com/Fishionapp", "https://instagram.com/Fishionapp"]
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "Fishion",
+      "operatingSystem": "iOS",
+      "applicationCategory": "SportsApplication",
+      "description": "AI fishing companion: identify your catch from a photo, find nearby waters scored on conditions, fill your Fishdex, log every session and claim thrones in the Arena.",
+      "url": "https://apps.apple.com/gb/app/fishion/id6799890725",
+      "downloadUrl": "https://apps.apple.com/gb/app/fishion/id6799890725",
+      "publisher": {"@id": "https://sundappleapp.com/#org"}
+    }
+  ]
+}
+</script>
+<script>(function(){try{var t=localStorage.getItem('sundapple-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sundappleapp.com">
+<meta property="og:title" content="Sundapple — Apps for people who'd rather be outside">
+<meta property="og:description" content="Small, focused apps for people who'd rather be outside. Featuring Fishion, available now.">
+<meta property="og:image" content="https://sundappleapp.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Fishionapp">
+<meta name="twitter:title" content="Sundapple — Apps for people who'd rather be outside">
+<meta name="twitter:description" content="Small, focused apps for people who'd rather be outside. Featuring Fishion, available now.">
+<meta name="twitter:image" content="https://sundappleapp.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16232B;
+    --ink-soft:#3C4A50;
+    --paper:#EEF2F0;
+    --paper-raised:#FFFFFF;
+    --gold:#E3A13B;
+    --pine:#2F5D50;
+    --line:#C7D2CC;
+    --line-strong:#9FB0A8;
+    --nav-bg:238,242,240;
+    --shadow-c:22,35,43;
+  }
+
+  :root[data-theme="dark"]{
+    --ink:#EBF1EE;
+    --ink-soft:#9FB2AC;
+    --paper:#10171A;
+    --paper-raised:#1A2427;
+    --gold:#F0B65A;
+    --pine:#5FC2A1;
+    --line:#2A3A38;
+    --line-strong:#3E534E;
+    --nav-bg:16,23,26;
+    --shadow-c:0,0,0;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease, color .25s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  a{color:inherit;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(var(--nav-bg),0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+    gap:20px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces',serif; font-weight:600; font-size:20px;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+  .logo svg{display:block;}
+  nav .links{
+    display:flex; align-items:center; gap:32px;
+    font-size:14px; font-weight:500;
+    letter-spacing:0.02em;
+  }
+  nav .links a{
+    text-decoration:none; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+    transition:color .2s ease;
+    white-space:nowrap;
+  }
+  nav .links a:hover{color:var(--ink);}
+  nav .links a:focus-visible, .logo:focus-visible, .btn:focus-visible, .store-badge:focus-visible,
+  .icon-btn:focus-visible, .lang-select:focus-visible{
+    outline:2px solid var(--pine); outline-offset:3px; border-radius:2px;
+  }
+
+  .nav-controls{
+    display:flex; align-items:center; gap:14px;
+    flex-shrink:0;
+  }
+  .icon-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    color:var(--ink);
+    cursor:pointer;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .icon-btn:hover{border-color:var(--line-strong); transform:translateY(-1px);}
+  .icon-btn svg{width:17px; height:17px;}
+  [data-theme="light"] .icon-moon{display:none;}
+  [data-theme="dark"] .icon-sun{display:none;}
+
+  .lang-select{
+    height:36px;
+    padding:0 28px 0 12px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:13px; font-weight:500;
+    cursor:pointer;
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%233C4A50' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 10px center;
+    transition:border-color .2s ease;
+  }
+  .lang-select:hover{border-color:var(--line-strong);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:110px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--pine); margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--pine); display:inline-block;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(44px, 7vw, 84px);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    max-width:15ch;
+  }
+  h1 em{
+    font-style:italic; font-weight:500; color:var(--pine);
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:19px;
+    color:var(--ink-soft);
+  }
+
+  .horizon{
+    margin-top:64px;
+    width:100%;
+    height:140px;
+    display:block;
+  }
+  .horizon path.line{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:1.4;
+    stroke-linecap:round;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 1.8s cubic-bezier(.4,0,.2,1) forwards .2s;
+  }
+  .horizon .sun{
+    transform-origin:center;
+    animation:rise 1.6s cubic-bezier(.4,0,.2,1) forwards .1s;
+    opacity:0;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ---------- Logo strip ---------- */
+  .logo-strip{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:52px 0;
+  }
+  .logo-strip-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:36px 48px;
+  }
+  .logo-item{
+    display:flex; align-items:center; gap:12px;
+    color:var(--ink);
+    font-family:'Fraunces',serif; font-weight:600; font-size:24px;
+    letter-spacing:-0.01em;
+  }
+  .logo-item svg{width:30px; height:30px; flex-shrink:0; color:var(--ink);}
+  .logo-item.placeholder{
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:13px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    transition:color .2s ease;
+  }
+  .logo-item.placeholder svg{color:var(--line-strong); transition:color .2s ease;}
+  .logo-item.placeholder:hover{color:var(--ink);}
+  .logo-item.placeholder:hover svg{color:var(--ink-soft);}
+  @media (max-width:720px){
+    .logo-strip-inner{justify-content:flex-start;}
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:48px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif; font-weight:600;
+    font-size:clamp(30px,4vw,42px);
+    letter-spacing:-0.01em;
+  }
+  .section-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  /* ---------- Featured app ---------- */
+  .app-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:56px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .app-icon{
+    width:220px; height:220px;
+    border-radius:46px;
+    background:#FFFFFF;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 24px 48px -20px rgba(var(--shadow-c),0.22);
+  }
+  .app-icon svg{width:118px; height:118px;}
+
+  .app-status{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--pine);
+    margin-bottom:16px;
+  }
+  .app-status .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--pine);
+    box-shadow:0 0 0 4px rgba(47,93,80,0.15);
+  }
+  .app-card h3{
+    font-family:'Fraunces',serif; font-weight:600;
+    font-size:38px; letter-spacing:-0.01em;
+    margin-bottom:10px;
+  }
+  .app-tagline{
+    font-size:18px; color:var(--ink-soft); margin-bottom:22px;
+  }
+  .app-desc{
+    max-width:52ch; color:var(--ink-soft); margin-bottom:28px;
+  }
+  .feature-list{
+    list-style:none;
+    display:flex; flex-direction:column; gap:12px;
+    margin-bottom:34px;
+  }
+  .feature-list li{
+    display:flex; gap:12px; align-items:flex-start;
+    font-size:15px;
+  }
+  .feature-list svg{flex-shrink:0; margin-top:3px;}
+
+  .store-badges{
+    display:flex; flex-wrap:wrap; gap:14px;
+  }
+  .store-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--ink); color:var(--paper);
+    padding:11px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .store-badge svg{width:20px; height:20px; flex-shrink:0;}
+  .store-badge .badge-text{display:flex; flex-direction:column; line-height:1.2;}
+  .store-badge .small{font-size:10px; opacity:0.75; letter-spacing:0.02em;}
+  .store-badge .big{font-size:15px; font-weight:600; letter-spacing:-0.01em;}
+  .store-badge:hover{background:var(--pine); transform:translateY(-2px);}
+
+  /* Official Apple badge (hosted by Apple's marketing tools) */
+  .appstore-badge{display:inline-block; line-height:0; border-radius:10px; transition:transform .2s ease;}
+  .appstore-badge:hover{transform:translateY(-2px);}
+  .appstore-badge:focus-visible{outline:2px solid var(--pine); outline-offset:3px;}
+  .appstore-badge img{height:48px; width:auto; display:block;}
+  .appstore-badge .badge-dark{display:none;}
+  [data-theme="dark"] .appstore-badge .badge-light{display:none;}
+  [data-theme="dark"] .appstore-badge .badge-dark{display:block;}
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:48px 56px;
+    display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;
+  }
+  .contact-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; margin-bottom:8px;}
+  .contact-card p{color:var(--ink-soft); max-width:52ch;}
+  .contact-actions{display:flex; flex-wrap:wrap; gap:12px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 20px; border-radius:12px;
+    font-weight:600; font-size:15px; text-decoration:none;
+    border:1px solid var(--line-strong);
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .btn-primary:hover{background:var(--pine); border-color:var(--pine);}
+  #contact{padding-top:88px; padding-bottom:88px;}
+  .badge-fallback{display:none;}
+  .appstore-badge.failed img{display:none !important;}
+  .appstore-badge.failed .badge-fallback{display:inline-flex;}
+  @media (max-width:720px){
+    .contact-card{grid-template-columns:1fr; padding:32px;}
+  }
+
+  @media (max-width:720px){
+    .app-card{grid-template-columns:1fr; padding:32px; text-align:left;}
+    .app-icon{width:120px; height:120px; border-radius:30px;}
+    .app-icon svg{width:64px; height:64px;}
+  }
+
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:48px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  footer .logo{font-size:16px;}
+  .social-links{display:flex; align-items:center; gap:10px;}
+  footer .meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; color:var(--ink-soft);
+    letter-spacing:0.03em;
+  }
+
+  @media (max-width:640px){
+    nav.wrap{height:auto; padding-top:14px; padding-bottom:14px; flex-wrap:wrap;}
+    nav .links{order:3; width:100%; gap:24px;}
+  }
+
+  /* ---------- Showcase ---------- */
+  .sc-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
+  .sc-card{ display:flex; flex-direction:column; }
+  .sc-stage{
+    position:relative; aspect-ratio:4/7;
+    border-radius:22px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    background:
+      radial-gradient(115% 85% at 28% 8%, rgba(255,255,255,0.42), rgba(255,255,255,0) 56%),
+      linear-gradient(155deg, #8FE3D2 0%, #35B49E 36%, #17766A 72%, #0C4741 100%);
+  }
+  .sc-phone{
+    --pw:clamp(100px, 70%, 200px);
+    width:var(--pw);
+    padding:calc(var(--pw) * 0.013);
+    border-radius:calc(var(--pw) * 0.150);
+    background:linear-gradient(145deg,
+      #eef1f2 0%, #a9b1b6 17%, #f4f6f7 37%,
+      #8c9599 57%, #e2e6e8 77%, #99a1a6 100%);
+    box-shadow:
+      0 2px 3px rgba(0,0,0,0.30),
+      0 34px 64px -22px rgba(0,0,0,0.62),
+      inset 0 0 0 1px rgba(255,255,255,0.30);
+  }
+  .sc-phone img{
+    display:block; width:100%; height:auto;
+    border-radius:calc(var(--pw) * 0.1368);
+  }
+  .sc-card h3{
+    font-family:'Fraunces',serif; font-weight:600;
+    font-size:20px; letter-spacing:-0.01em; margin:20px 0 6px;
+    color:var(--ink);
+  }
+  .sc-card p{ font-size:14.5px; color:var(--ink-soft); }
+
+  @media (max-width:980px){
+    .sc-grid{ grid-template-columns:repeat(2,1fr); gap:28px; }
+    .sc-stage{ aspect-ratio:3/4; }
+    .sc-phone{ --pw:clamp(110px, 52%, 240px); }
+    .sc-card h3{ font-size:23px; }
+    .sc-card p{ font-size:15.5px; max-width:44ch; }
+  }
+  @media (max-width:620px){
+    .sc-grid{ grid-template-columns:1fr; gap:40px; }
+    .sc-stage{ aspect-ratio:auto; height:clamp(370px, 103vw, 565px); }
+    .sc-phone{ --pw:clamp(150px, 42vw, 230px); }
+    .sc-card p{ max-width:52ch; }
+  }
+  @media (max-width:640px){
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="13" cy="10" r="6" fill="#E3A13B"/>
+        <path d="M2 20C6 16.5 20 16.5 24 20" stroke="#2F5D50" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Sundapple
+    </a>
+    <div class="links">
+      <a href="#fishion">Fishion</a>
+      <a href="#more" data-i18n="nav.moreApps">More apps</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-controls">
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M12 2.5V5M12 19V21.5M21.5 12H19M5 12H2.5M18.4 5.6L16.6 7.4M7.4 16.6L5.6 18.4M18.4 18.4L16.6 16.6M7.4 7.4L5.6 5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.7 6.7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <p class="eyebrow">Sundappleapp.com</p>
+    <h1><span data-i18n="hero.h1a">Small apps for people who'd rather</span> <em data-i18n="hero.h1b">be outside.</em></h1>
+    <p class="lede" data-i18n="hero.lede">Sundapple is a home for a handful of focused, well-made apps. First up: Fishion, for keeping track of what you catch and where.</p>
+
+    <svg class="horizon" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
+      <circle class="sun" cx="500" cy="46" r="20" fill="#E3A13B"/>
+      <path class="line" d="M0 96 C 150 76, 260 118, 400 96 S 620 74, 760 100 S 900 118, 1000 92" />
+    </svg>
+  </section>
+
+  <section id="fishion" class="wrap">
+    <div class="section-head">
+      <h2>Fishion</h2>
+      <span class="section-tag" data-i18n="fishion.tag">01 — Available now</span>
+    </div>
+
+    <div class="app-card">
+      <div class="app-icon" style="background:#1FAE9B;">
+        <svg viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(120,0) scale(-1,1)">
+            <path d="M10 28 C24 14, 46 8, 64 10 C80 12, 92 16, 100 22 L100 46 C92 52, 80 56, 64 58 C46 60, 24 54, 10 40 L28 33 Z" fill="#FFFFFF"/>
+            <path d="M100 22 L120 8 L106 34 L120 58 L100 46 Z" fill="#FFFFFF"/>
+            <circle cx="34" cy="24" r="4" fill="#1FAE9B"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <span class="app-status"><span class="dot"></span> <span data-i18n="fishion.status">Live</span></span>
+        <h3>Fishion</h3>
+        <p class="app-tagline" data-i18n="fishion.tagline">Track your catch. Read the water.</p>
+        <p class="app-desc" data-i18n="fishion.desc">Fishion is an AI fishing companion. It names what you've caught, points you to the best water nearby, and turns every trip into progress — a Fishdex to fill, a log that spots your patterns, and thrones to claim.</p>
+        <ul class="feature-list">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#2F5D50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="fishion.feature1">Identify any catch from a photo with AI</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#2F5D50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="fishion.feature2">Find nearby waters, ranked by catch potential and conditions</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#2F5D50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="fishion.feature3">Log sessions with conditions saved alongside every catch</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#2F5D50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="fishion.feature4">Unlock 550+ species in the Fishdex and claim thrones in the Arena</span>
+          </li>
+        </ul>
+        <div class="store-badges">
+          <a class="appstore-badge" href="https://apps.apple.com/gb/app/fishion/id6799890725" aria-label="Download Fishion on the App Store">
+            <img class="badge-light" id="badgeLight" src="https://tools.applemarketingtools.com/api/badges/download-on-the-app-store/black/en-gb" alt="Download on the App Store" height="48">
+            <img class="badge-dark" id="badgeDark" src="https://tools.applemarketingtools.com/api/badges/download-on-the-app-store/white/en-gb" alt="Download on the App Store" height="48">
+            <span class="badge-fallback store-badge"><span class="badge-text"><span class="small">Download on the</span><span class="big">App Store</span></span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="sc">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 data-i18n="showcase.h2">Inside Fishion</h2>
+        <span class="section-tag" data-i18n="showcase.tag">What you actually get</span>
+      </div>
+      <div class="sc-grid">
+
+        <article class="sc-card">
+          <div class="sc-stage">
+            <div class="sc-phone">
+              <picture>
+                <source srcset="img/fishion-identify@2x.webp" type="image/webp">
+                <img src="img/fishion-identify@2x.png" width="640" height="1391" loading="lazy" decoding="async"
+                     alt="Fishion&rsquo;s Identify a catch screen, with a camera drop zone for scanning a fish photo.">
+              </picture>
+            </div>
+          </div>
+          <h3 data-i18n="showcase.c1h">Identify a catch</h3>
+          <p data-i18n="showcase.c1p">Snap a photo and the AI names the species, with facts, nutrition and edibility notes to check against. Earn XP every time.</p>
+        </article>
+
+        <article class="sc-card">
+          <div class="sc-stage">
+            <div class="sc-phone">
+              <picture>
+                <source srcset="img/fishion-find@2x.webp" type="image/webp">
+                <img src="img/fishion-find@2x.png" width="597" height="1298" loading="lazy" decoding="async"
+                     alt="Fishion&rsquo;s map screen, showing nearby fishing spots each marked with a Fish Score.">
+              </picture>
+            </div>
+          </div>
+          <h3 data-i18n="showcase.c2h">Find</h3>
+          <p data-i18n="showcase.c2p">Every water near you, scored on catch potential and conditions. Sorted so the best one sits at the top.</p>
+        </article>
+
+        <article class="sc-card">
+          <div class="sc-stage">
+            <div class="sc-phone">
+              <picture>
+                <source srcset="img/fishion-fishdex@2x.webp" type="image/webp">
+                <img src="img/fishion-fishdex@2x.png" width="640" height="1391" loading="lazy" decoding="async"
+                     alt="Fishion&rsquo;s Fishdex screen, listing over 550 catchable species sorted rarest first, with legendary species still locked.">
+              </picture>
+            </div>
+          </div>
+          <h3 data-i18n="showcase.c3h">Fishdex</h3>
+          <p data-i18n="showcase.c3p">Over 550 species of fish, shark, ray, squid, crab and lobster, sorted rarest first. Each one stays locked until you land it.</p>
+        </article>
+
+        <article class="sc-card">
+          <div class="sc-stage">
+            <div class="sc-phone">
+              <picture>
+                <source srcset="img/fishion-catchlog@2x.webp" type="image/webp">
+                <img src="img/fishion-catchlog@2x.png" width="640" height="1391" loading="lazy" decoding="async"
+                     alt="Fishion&rsquo;s catch log screen, showing session tracking, catch and species counts, and unlockable badges.">
+              </picture>
+            </div>
+          </div>
+          <h3 data-i18n="showcase.c4h">Catch log</h3>
+          <p data-i18n="showcase.c4p">Start a session and every catch is stamped with the conditions it happened in. The patterns surface on their own.</p>
+        </article>
+        <article class="sc-card">
+          <div class="sc-stage">
+            <div class="sc-phone">
+              <picture>
+                <source srcset="img/fishion-arena@2x.webp" type="image/webp">
+                <img src="img/fishion-arena@2x.png" width="640" height="1391" loading="lazy" decoding="async"
+                     alt="Fishion&rsquo;s Arena screen, showing unclaimed thrones on a map of nearby waters.">
+              </picture>
+            </div>
+          </div>
+          <h3 data-i18n="showcase.c5h">Arena</h3>
+          <p data-i18n="showcase.c5p">Claim thrones at real piers, beaches and creeks. Scout them anywhere in the world, but you have to be within 300&nbsp;m to take one.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="more" class="logo-strip">
+    <div class="wrap logo-strip-inner">
+      <div class="logo-item">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 50 L10 34 L18 50 L10 66 Z" fill="currentColor"/>
+          <path d="M30 50 C30 30 48 22 68 27 C84 31 92 42 92 50 C92 58 84 69 68 73 C48 78 30 70 30 50 Z" fill="currentColor"/>
+          <circle cx="72" cy="43" r="3.6" fill="var(--paper)"/>
+        </svg>
+        <span>Fishion</span>
+      </div>
+      <div class="logo-item placeholder">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="34" stroke="currentColor" stroke-width="7" stroke-dasharray="10 12"/>
+        </svg>
+        <span data-i18n="logostrip.comingSoon">Coming soon</span>
+      </div>
+      <div class="logo-item placeholder">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="18" width="64" height="64" rx="18" stroke="currentColor" stroke-width="7" stroke-dasharray="10 12"/>
+        </svg>
+        <span data-i18n="logostrip.inTheWorks">In the works</span>
+      </div>
+      <div class="logo-item placeholder">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 16 L84 84 L16 84 Z" stroke="currentColor" stroke-width="7" stroke-linejoin="round" stroke-dasharray="10 12"/>
+        </svg>
+        <span data-i18n="logostrip.earlyDays">Early days</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="contact.h2">Get in touch</h2>
+      <span class="section-tag" data-i18n="contact.tag">We read everything</span>
+    </div>
+    <div class="contact-card">
+      <div>
+        <h3 data-i18n="contact.h3">Questions, bugs or a fish we got wrong?</h3>
+        <p data-i18n="contact.p">Email us and a real person will reply, usually within a couple of days. Feature ideas are very welcome.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:fishion@sundappleapp.com">fishion@sundappleapp.com</a>
+        <a class="btn" href="support.html" data-i18n="contact.support">Support page</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <svg width="22" height="22" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="13" cy="10" r="6" fill="#E3A13B"/>
+        <path d="M2 20C6 16.5 20 16.5 24 20" stroke="#2F5D50" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Sundapple
+    </a>
+    <div class="social-links">
+      <a href="https://x.com/Fishionapp" class="icon-btn" target="_blank" rel="noopener" aria-label="Fishion on X">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="https://instagram.com/Fishionapp" class="icon-btn" target="_blank" rel="noopener" aria-label="Fishion on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+    <span class="meta">sundappleapp.com · © 2026 · <a href="privacy.html" style="color:inherit;" data-i18n="footer.privacy">Fishion Privacy Policy</a> · <a href="terms.html" style="color:inherit;" data-i18n="footer.terms">Fishion Terms of Use</a> · <a href="support.html" style="color:inherit;" data-i18n="footer.support">Fishion Support</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var translations = {
+    en: {
+      "nav.moreApps":"More apps","nav.contact":"Contact",
+      "hero.h1a":"Small apps for people who'd rather","hero.h1b":"be outside.",
+      "hero.lede":"Sundapple is a home for a handful of focused, well-made apps. First up: Fishion, for keeping track of what you catch and where.",
+      "logostrip.comingSoon":"Coming soon","logostrip.inTheWorks":"In the works","logostrip.earlyDays":"Early days",
+      "fishion.tag":"01 — Available now","fishion.status":"Live",
+      "fishion.tagline":"Track your catch. Read the water.",
+      "fishion.desc":"Fishion is an AI fishing companion. It names what you've caught, points you to the best water nearby, and turns every trip into progress — a Fishdex to fill, a log that spots your patterns, and thrones to claim.",
+      "fishion.feature1":"Identify any catch from a photo with AI",
+      "fishion.feature2":"Find nearby waters, ranked by catch potential and conditions",
+      "fishion.feature3":"Log sessions with conditions saved alongside every catch",
+      "fishion.downloadOn":"Download on the",
+            "showcase.c1h":"Identify a catch","showcase.c1p":"Snap a photo and the AI names the species, with facts, nutrition and edibility notes to check against. Earn XP every time.",
+      "showcase.c2h":"Find","showcase.c2p":"Every water near you, scored on catch potential and conditions. Sorted so the best one sits at the top.",
+      "showcase.c3h":"Fishdex","showcase.c3p":"Over 550 species of fish, shark, ray, squid, crab and lobster, sorted rarest first. Each one stays locked until you land it.",
+      "showcase.c4h":"Catch log","showcase.c4p":"Start a session and every catch is stamped with the conditions it happened in. The patterns surface on their own.",
+      "showcase.c5h":"Arena","showcase.c5p":"Claim thrones at real piers, beaches and creeks. Scout them anywhere in the world, but you have to be within 300\u00A0m to take one.",
+      "showcase.h2":"Inside Fishion",
+      "showcase.tag":"What you actually get",
+      "footer.privacy":"Fishion Privacy Policy","footer.terms":"Fishion Terms of Use","footer.support":"Fishion Support",
+      "fishion.feature4":"Unlock 550+ species in the Fishdex and claim thrones in the Arena",
+      "contact.h2":"Get in touch",
+      "contact.tag":"We read everything",
+      "contact.h3":"Questions, bugs or a fish we got wrong?",
+      "contact.p":"Email us and a real person will reply, usually within a couple of days. Feature ideas are very welcome.",
+      "contact.support":"Support page"
+    },
+    es: {
+      "nav.moreApps":"Más apps","nav.contact":"Contacto",
+      "hero.h1a":"Apps sencillas para quienes prefieren","hero.h1b":"estar al aire libre.",
+      "hero.lede":"Sundapple reúne un puñado de apps sencillas y bien hechas. La primera: Fishion, para llevar el registro de lo que pescas y dónde.",
+      "logostrip.comingSoon":"Próximamente","logostrip.inTheWorks":"En desarrollo","logostrip.earlyDays":"Primeros pasos",
+      "fishion.tag":"01 — Disponible ahora","fishion.status":"Activa",
+      "fishion.tagline":"Registra tus capturas. Lee el agua.",
+      "fishion.desc":"Fishion es tu compañero de pesca con IA. Identifica lo que has pescado, te indica la mejor agua cercana y convierte cada salida en progreso: una Fishdex que completar, un registro que detecta tus patrones y tronos que conquistar.",
+      "fishion.feature1":"Identifica cualquier captura con una foto gracias a la IA",
+      "fishion.feature2":"Encuentra aguas cercanas, ordenadas por potencial de captura y condiciones",
+      "fishion.feature3":"Registra sesiones con las condiciones guardadas en cada captura",
+      "fishion.downloadOn":"Disponible en",
+            "showcase.c1h":"Identificar una captura","showcase.c1p":"Haz una foto y la IA nombra la especie, con datos, nutrición y notas de comestibilidad que puedes contrastar. Gana XP cada vez.",
+      "showcase.c2h":"Buscar","showcase.c2p":"Cada agua cercana, puntuada por potencial de captura y condiciones. Ordenadas para que la mejor quede arriba.",
+      "showcase.c3h":"Fishdex","showcase.c3p":"Más de 550 especies de peces, tiburones, rayas, calamares, cangrejos y langostas, ordenadas de la más rara a la más común. Cada una permanece bloqueada hasta que la pesques.",
+      "showcase.c4h":"Registro de capturas","showcase.c4p":"Inicia una sesión y cada captura queda marcada con las condiciones del momento. Los patrones aparecen solos.",
+      "showcase.c5h":"Arena","showcase.c5p":"Reclama tronos en muelles, playas y arroyos reales. Explóralos desde cualquier parte del mundo, pero debes estar a menos de 300\u00A0m para conquistar uno.",
+      "showcase.h2":"Dentro de Fishion",
+      "showcase.tag":"Lo que realmente obtienes",
+      "footer.privacy":"Política de privacidad de Fishion","footer.terms":"Términos de uso de Fishion","footer.support":"Soporte de Fishion",
+      "fishion.feature4":"Desbloquea más de 550 especies en la Fishdex y conquista tronos en la Arena",
+      "contact.h2":"Contacto",
+      "contact.tag":"Leemos todo",
+      "contact.h3":"¿Preguntas, errores o un pez que identificamos mal?",
+      "contact.p":"Escríbenos y una persona real te responderá, normalmente en un par de días. Las ideas para nuevas funciones son muy bienvenidas.",
+      "contact.support":"Página de soporte"
+    },
+    fr: {
+      "nav.moreApps":"Autres apps","nav.contact":"Contact",
+      "hero.h1a":"De petites apps pour ceux qui préfèrent","hero.h1b":"être dehors.",
+      "hero.lede":"Sundapple réunit quelques applications simples et soignées. La première : Fishion, pour suivre ce que vous pêchez et où.",
+      "logostrip.comingSoon":"Bientôt","logostrip.inTheWorks":"En cours","logostrip.earlyDays":"Tout début",
+      "fishion.tag":"01 — Disponible","fishion.status":"En ligne",
+      "fishion.tagline":"Suivez vos prises. Lisez l'eau.",
+      "fishion.desc":"Fishion est votre compagnon de pêche doté d’IA. Il identifie vos prises, vous oriente vers les meilleurs coins à proximité et fait de chaque sortie une progression : une Fishdex à compléter, un carnet qui repère vos tendances et des trônes à conquérir.",
+      "fishion.feature1":"Identifiez n’importe quelle prise à partir d’une photo grâce à l’IA",
+      "fishion.feature2":"Trouvez les plans d’eau proches, classés selon le potentiel de prise et les conditions",
+      "fishion.feature3":"Enregistrez vos sessions avec les conditions de chaque prise",
+      "fishion.downloadOn":"Disponible sur",
+            "showcase.c1h":"Identifier une prise","showcase.c1p":"Prenez une photo et l’IA nomme l’espèce, avec des faits, la nutrition et des notes de comestibilité à recouper. Gagnez de l’XP à chaque fois.",
+      "showcase.c2h":"Trouver","showcase.c2p":"Chaque plan d’eau près de vous, noté selon le potentiel de prise et les conditions. Trié pour que le meilleur soit en haut.",
+      "showcase.c3h":"Fishdex","showcase.c3p":"Plus de 550 espèces de poissons, requins, raies, calmars, crabes et homards, classées de la plus rare à la plus commune. Chacune reste verrouillée jusqu’à ce que vous la pêchiez.",
+      "showcase.c4h":"Carnet de prises","showcase.c4p":"Lancez une session et chaque prise est enregistrée avec les conditions du moment. Les tendances émergent d’elles-mêmes.",
+      "showcase.c5h":"Arena","showcase.c5p":"Revendiquez des trônes sur de vrais quais, plages et criques. Repérez-les partout dans le monde, mais il faut être à moins de 300\u00A0m pour en prendre un.",
+      "showcase.h2":"Dans Fishion",
+      "showcase.tag":"Ce que vous obtenez vraiment",
+      "footer.privacy":"Politique de confidentialité de Fishion","footer.terms":"Conditions d'utilisation de Fishion","footer.support":"Assistance Fishion",
+      "fishion.feature4":"Débloquez plus de 550 espèces dans la Fishdex et conquérez des trônes dans l’Arena",
+      "contact.h2":"Nous contacter",
+      "contact.tag":"Nous lisons tout",
+      "contact.h3":"Une question, un bug ou un poisson mal identifié ?",
+      "contact.p":"Écrivez-nous et une vraie personne vous répondra, généralement sous quelques jours. Vos idées de fonctionnalités sont les bienvenues.",
+      "contact.support":"Page d’assistance"
+    }
+  };
+
+  function applyLanguage(lang){
+    var dict = translations[lang] || translations.en;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key]) el.textContent = dict[key];
+    });
+    document.documentElement.setAttribute('lang', lang);
+
+    // Localised official App Store badges
+    var badgeLocale = {en:'en-gb', es:'es-es', fr:'fr-fr'}[lang] || 'en-gb';
+    var base = 'https://tools.applemarketingtools.com/api/badges/download-on-the-app-store/';
+    var bl = document.getElementById('badgeLight'), bd = document.getElementById('badgeDark');
+    if(bl) bl.src = base + 'black/' + badgeLocale;
+    if(bd) bd.src = base + 'white/' + badgeLocale;
+  }
+
+  // If Apple's badge image can't load, show a text button instead
+  ['badgeLight','badgeDark'].forEach(function(id){
+    var img = document.getElementById(id);
+    if(!img) return;
+    var fail = function(){ img.closest('.appstore-badge').classList.add('failed'); };
+    img.addEventListener('error', fail);
+    if(img.complete && img.naturalWidth === 0 && getComputedStyle(img).display !== 'none') fail();
+  });
+
+  var langSelect = document.getElementById('langSelect');
+
+  function pickInitialLanguage(){
+    try{
+      var saved = localStorage.getItem('sundapple-lang');
+      if(saved && translations[saved]) return saved;
+    }catch(e){}
+    var prefs = navigator.languages || [navigator.language || 'en'];
+    for(var i=0;i<prefs.length;i++){
+      var code = String(prefs[i]).slice(0,2).toLowerCase();
+      if(translations[code]) return code;
+    }
+    return 'en';
+  }
+
+  var initialLang = pickInitialLanguage();
+  langSelect.value = initialLang;
+  if(initialLang !== 'en') applyLanguage(initialLang);
+
+  langSelect.addEventListener('change', function(){
+    applyLanguage(this.value);
+    try{ localStorage.setItem('sundapple-lang', this.value); }catch(e){}
+  });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(mode, persist){
+    document.documentElement.setAttribute('data-theme', mode);
+    if(themeMeta){ themeMeta.setAttribute('content', mode === 'dark' ? '#10171A' : '#EEF2F0'); }
+    if(persist){ try{ localStorage.setItem('sundapple-theme', mode); }catch(e){} }
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
+
+  themeToggle.addEventListener('click', function(){
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    applyTheme(isDark ? 'light' : 'dark', true);
+  });
+})();
+</script>
+
+</body>
+</html>
