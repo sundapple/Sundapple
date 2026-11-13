@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sundapple">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip planner — Sundapple</title>
+<meta name="description" content="Plan a day out or a weekend away. See sunrise, sunset and golden hour for every day, write a packing list, then print it, add it to your calendar or share a link. Free, no sign-up.">
+<link rel="canonical" href="https://sundappleapp.com/planner">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#EEF2F0">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sundappleapp.com/planner">
+<meta property="og:title" content="Trip planner — Sundapple">
+<meta property="og:description" content="A trip sheet you fill in: daylight for every day, a packing list, and a plan you can print or share.">
+<script>(function(){try{var t=localStorage.getItem('sundapple-planner-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* ---------------------------------------------------------
+   Papers. Each style is a different kind of paper and ink,
+   not a different app skin.
+   --------------------------------------------------------- */
+:root, [data-theme="sundapple"]{
+  --paper:#EEF2F0; --ink:#16232B; --soft:#5B6A70; --rule:#C3CEC8; --mark:#2F5D50; --warm:#E3A13B;
+  --display:'Fraunces', Georgia, serif; --body:'Inter', system-ui, sans-serif;
+  --dw:600; --dcase:none; --dtrack:-0.02em; --title:clamp(44px,7vw,88px); --num:64px;
+  --night:#16232B; --day:#A9D2C3; --gold:#E3A13B; --bar:10px;
+  --texture:none; --tsize:auto;
+}
+[data-theme="notebook"]{
+  --paper:#F4F7F2; --ink:#1F3A5F; --soft:#56708E; --rule:rgba(31,58,95,.26); --mark:#D0312D; --warm:#D0312D;
+  --display:'Kalam', 'Segoe Print', cursive; --body:'Kalam', 'Segoe Print', cursive;
+  --dw:700; --dcase:none; --dtrack:0; --title:clamp(48px,8vw,96px); --num:66px;
+  --night:#1F3A5F; --day:#CFDDEB; --gold:#E9B44C; --bar:8px;
+  --texture:
+    linear-gradient(90deg, transparent 47px, rgba(208,49,45,.6) 47px, rgba(208,49,45,.6) 49px, transparent 49px),
+    linear-gradient(rgba(31,58,95,.085) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,58,95,.085) 1px, transparent 1px);
+  --tsize:auto, 22px 22px, 22px 22px;
+}
+[data-theme="trail"]{
+  --paper:#E2E9D8; --ink:#1B2A17; --soft:#4A5B42; --rule:rgba(27,42,23,.3); --mark:#E85D10; --warm:#E85D10;
+  --display:'Barlow Condensed', 'Arial Narrow', sans-serif; --body:'Barlow', system-ui, sans-serif;
+  --dw:800; --dcase:uppercase; --dtrack:0; --title:clamp(56px,10vw,128px); --num:76px;
+  --night:#1B2A17; --day:#F3E39A; --gold:#E85D10; --bar:14px;
+  --texture:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640' fill='none' stroke='%232E5A1F' stroke-opacity='.15' stroke-width='1.3'%3E%3Cpath d='M-20 120c80-40 150 30 240-10s160-60 240 0 120 40 200 10'/%3E%3Cpath d='M-20 160c90-40 160 40 250 0s150-50 230 10 110 40 200 10'/%3E%3Cpath d='M-20 200c100-30 170 40 260 5s140-40 220 20 100 30 200 5'/%3E%3Cpath d='M300 340c40-60 140-70 170-10s-20 120-90 120-120-50-80-110z'/%3E%3Cpath d='M270 340c50-90 190-100 230-10s-30 160-120 160-160-60-110-150z'/%3E%3Cpath d='M240 340c60-120 240-130 290-10s-40 200-150 200-200-70-140-190z'/%3E%3Cpath d='M-20 560c80-30 150 20 230-10s150-40 220 10 120 30 230 0'/%3E%3C/svg%3E");
+  --tsize:640px 640px;
+}
+[data-theme="night"]{
+  --paper:#151937; --ink:#ECE9F7; --soft:#A3A0C4; --rule:rgba(236,233,247,.17); --mark:#FFB547; --warm:#FFB547;
+  --display:'Young Serif', Georgia, serif; --body:'Atkinson Hyperlegible', system-ui, sans-serif;
+  --dw:400; --dcase:none; --dtrack:-0.01em; --title:clamp(44px,7vw,88px); --num:62px;
+  --night:#0A0D24; --day:#4F63B5; --gold:#FFB547; --bar:10px;
+  --texture:
+    radial-gradient(1.2px 1.2px at 24px 30px, rgba(255,255,255,.75), transparent),
+    radial-gradient(1px 1px at 130px 90px, rgba(255,255,255,.55), transparent),
+    radial-gradient(1.3px 1.3px at 210px 170px, rgba(255,255,255,.65), transparent),
+    radial-gradient(1px 1px at 70px 200px, rgba(255,255,255,.45), transparent),
+    radial-gradient(1px 1px at 270px 50px, rgba(255,255,255,.5), transparent);
+  --tsize:300px 230px;
+}
+[data-theme="coast"]{
+  --paper:#E1EFF2; --ink:#0C3B4D; --soft:#4A6F7E; --rule:#A9CDD6; --mark:#0C6E80; --warm:#D99A2B;
+  --display:'Bricolage Grotesque', system-ui, sans-serif; --body:'Bricolage Grotesque', system-ui, sans-serif;
+  --dw:700; --dcase:none; --dtrack:-0.035em; --title:clamp(46px,7.5vw,92px); --num:68px;
+  --night:#0C3B4D; --day:#8FD0DD; --gold:#F0C36D; --bar:12px;
+  --texture:none; --tsize:auto;
+}
+
+/* ---------------------------------------------------------
+   Page
+   --------------------------------------------------------- */
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background-color:var(--paper); background-image:var(--texture); background-size:var(--tsize);
+  color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.55;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+[data-theme="notebook"] body{font-size:19px; line-height:1.45;}
+[data-theme="coast"] body{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 60c120-30 240-30 360 0s240 30 360 0 240-30 360 0 240 30 360 0v60H0z' fill='%238FD0DD' fill-opacity='.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:bottom; background-size:100% 120px;
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+a{color:inherit;}
+button, input, textarea{font:inherit; color:inherit; background:none; border:0;}
+button{cursor:pointer;}
+:focus-visible{outline:2px solid var(--mark); outline-offset:3px;}
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+
+.page{max-width:900px; margin:0 auto; padding:0 32px 120px;}
+[data-theme="notebook"] .page{padding-left:84px;}
+
+/* Controls: plain text, outside the sheet's content */
+.controls{display:flex; justify-content:space-between; align-items:baseline; gap:12px 28px; flex-wrap:wrap; padding:22px 0 0; font-family:'Inter', system-ui, sans-serif; font-size:14.5px;}
+.brand{font-family:'Fraunces', Georgia, serif; font-weight:600; font-size:18px; text-decoration:none;}
+.styles{display:flex; gap:4px 16px; flex-wrap:wrap; align-items:baseline; color:var(--soft);}
+.styles button{padding:2px 0; color:var(--soft); border-bottom:2px solid transparent;}
+.styles button:hover{color:var(--ink);}
+.styles button[aria-pressed="true"]{color:var(--ink); border-bottom-color:var(--mark); font-weight:600;}
+
+/* ---------------------------------------------------------
+   Sheet header
+   --------------------------------------------------------- */
+.head{padding:64px 0 36px;}
+.title{
+  display:block; width:100%; resize:none; overflow:hidden;
+  font-family:var(--display); font-weight:var(--dw); font-size:var(--title);
+  line-height:1; letter-spacing:var(--dtrack); text-transform:var(--dcase);
+}
+[data-theme="trail"] .title{line-height:.88;}
+.title::placeholder{color:var(--ink); opacity:.28;}
+.title:focus{outline:none;}
+
+/* "Going to ___ from ___ to ___" */
+.going{margin-top:22px; font-size:20px; color:var(--soft); display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; max-width:780px;}
+[data-theme="notebook"] .going{font-size:23px;}
+.blank{
+  color:var(--ink); font-weight:500;
+  border-bottom:1.5px solid var(--rule); padding:0 2px 2px;
+  transition:border-color .15s ease;
+}
+.blank:hover{border-bottom-color:var(--soft);}
+.blank:focus{outline:none; border-bottom-color:var(--mark);}
+.blank::placeholder{color:var(--soft); opacity:.7; font-weight:400;}
+.place-wrap{position:relative; display:inline-flex; align-items:baseline; gap:8px;}
+#placeInput{width:15ch;}
+input[type="date"].blank{width:auto; min-width:9.5em;}
+[data-theme="night"] input[type="date"], [data-theme="night"] input[type="time"]{color-scheme:dark;}
+.near{font-size:14px; color:var(--soft); text-decoration:underline; text-underline-offset:3px;}
+.near:hover{color:var(--ink);}
+.results{
+  position:absolute; top:calc(100% + 6px); left:0; min-width:300px; z-index:10;
+  background:var(--paper); border:1.5px solid var(--ink); list-style:none; font-size:16px;
+}
+.results button{display:block; width:100%; text-align:left; padding:9px 12px;}
+.results button:hover, .results button:focus{background:var(--ink); color:var(--paper); outline:none;}
+.results small{opacity:.7;}
+.placeline{margin-top:8px; font-size:14px; color:var(--soft); font-family:'Inter', system-ui, sans-serif;}
+
+/* Actions */
+.doing{display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; margin-top:34px; font-family:'Inter', system-ui, sans-serif; font-size:15px;}
+.doing button{padding:4px 0; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; color:var(--ink);}
+.doing button:hover{text-decoration-thickness:2px;}
+.doing .print{
+  text-decoration:none; background:var(--ink); color:var(--paper); padding:11px 18px; font-weight:600;
+}
+[data-theme="trail"] .doing .print{background:var(--mark); color:var(--ink); font-family:'Barlow Condensed', sans-serif; font-size:19px; text-transform:uppercase; padding:9px 18px;}
+[data-theme="coast"] .doing .print{border-radius:999px;}
+.doing .print:hover{opacity:.9;}
+.doing .later{color:var(--soft);}
+
+/* ---------------------------------------------------------
+   Days: date in the margin, plans on ruled lines
+   --------------------------------------------------------- */
+.days{border-top:2px solid var(--ink);}
+.day{display:grid; grid-template-columns:110px minmax(0,1fr); gap:0 28px; padding:30px 0 26px; border-bottom:1px solid var(--rule);}
+.date{line-height:1;}
+.date .n{display:block; font-family:var(--display); font-weight:var(--dw); font-size:var(--num); letter-spacing:-0.03em; font-variant-numeric:lining-nums;}
+.date .w{display:block; margin-top:8px; font-size:15px; color:var(--soft); line-height:1.3;}
+.date .w span{display:block;}
+[data-theme="trail"] .date .w{text-transform:uppercase; font-weight:700; letter-spacing:.04em;}
+.forecast{margin-top:14px; font-size:14px; color:var(--soft); line-height:1.4;}
+.forecast b{display:block; color:var(--ink); font-weight:600;}
+
+/* Daylight: one line with the sun's times written on it */
+.sky{position:relative; padding-top:24px; margin-bottom:12px;}
+.sky-line{position:relative; height:var(--bar); background:var(--night);}
+[data-theme="coast"] .sky-line{border-radius:999px; overflow:hidden;}
+.sky-seg{position:absolute; top:0; bottom:0;}
+.sky-gold{background:var(--gold);}
+.sky-day{background:var(--day);}
+.sky-pin{position:absolute; bottom:calc(100% + 0px); width:1px; height:8px; background:var(--soft);}
+.sky-time{position:absolute; top:0; font-size:13.5px; white-space:nowrap; transform:translateX(-50%); color:var(--ink); font-family:'Inter', system-ui, sans-serif; font-variant-numeric:tabular-nums;}
+[data-theme="notebook"] .sky-time{font-family:'Kalam', cursive; font-size:16px; top:-3px;}
+.sky-time.l{transform:translateX(-100%); padding-right:2px;}
+.sky-time.r{transform:none; padding-left:2px;}
+.sky-plan{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--mark);}
+.sky-now{position:absolute; top:-6px; bottom:-6px; width:2px; background:var(--ink);}
+[data-theme="night"] .sky-now{background:#fff;}
+.sky-note{font-size:14px; color:var(--soft); margin-top:6px; font-family:'Inter', system-ui, sans-serif;}
+[data-theme="notebook"] .sky-note{font-family:'Kalam', cursive; font-size:16px;}
+.sky-empty{font-size:15px; color:var(--soft); padding-top:4px;}
+
+.lines{list-style:none;}
+.line{display:grid; grid-template-columns:104px minmax(0,1fr) 28px; align-items:center; border-bottom:1px solid var(--rule); min-height:46px;}
+.line:hover .rm{opacity:1;}
+.line input{padding:10px 0; width:100%;}
+.line input:focus{outline:none;}
+.line:focus-within{border-bottom-color:var(--mark);}
+.line .t::-webkit-calendar-picker-indicator{display:none;}
+.line .t{color:var(--soft); font-variant-numeric:tabular-nums; font-size:15.5px;}
+[data-theme="notebook"] .line .t{font-size:18px;}
+.line .t:not(.empty){color:var(--ink);}
+.line .x::placeholder{color:var(--soft); opacity:.6;}
+.rm{opacity:0; color:var(--soft); font-size:20px; line-height:1; width:28px; height:28px; transition:opacity .15s ease;}
+.rm:focus{opacity:1;}
+.rm:hover{color:var(--ink);}
+@media (hover:none){ .rm{opacity:.55;} }
+
+/* ---------------------------------------------------------
+   Packing and notes
+   --------------------------------------------------------- */
+.part{padding:56px 0 0;}
+.part h2{
+  font-family:var(--display); font-weight:var(--dw); text-transform:var(--dcase); letter-spacing:var(--dtrack);
+  font-size:clamp(30px,4vw,42px); line-height:1.05; padding-bottom:12px; border-bottom:2px solid var(--ink);
+  display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;
+}
+.part h2 small{font-family:'Inter', system-ui, sans-serif; font-size:14.5px; font-weight:400; color:var(--soft); text-transform:none; letter-spacing:0;}
+[data-theme="notebook"] .part h2 small{font-family:'Kalam', cursive; font-size:17px;}
+.starters{margin:14px 0 6px; font-size:15px; color:var(--soft); font-family:'Inter', system-ui, sans-serif;}
+[data-theme="notebook"] .starters{font-family:'Kalam', cursive; font-size:18px;}
+.starters button{color:var(--ink); text-decoration:underline; text-underline-offset:3px; padding:0 1px;}
+.starters button:hover{color:var(--mark);}
+
+.pack{list-style:none; columns:2; column-gap:40px;}
+.pack li{break-inside:avoid; display:grid; grid-template-columns:26px minmax(0,1fr) 28px; align-items:center; border-bottom:1px solid var(--rule); min-height:44px;}
+.pack li:hover .rm{opacity:1;}
+.pack input.item{padding:9px 0 9px 8px; width:100%;}
+.pack input.item:focus{outline:none;}
+.pack li.got input.item{text-decoration:line-through; text-decoration-color:var(--mark); text-decoration-thickness:2px; color:var(--soft);}
+.box{appearance:none; -webkit-appearance:none; width:18px; height:18px; border:1.5px solid var(--ink); position:relative; cursor:pointer;}
+[data-theme="coast"] .box{border-radius:50%;}
+[data-theme="notebook"] .box{border-radius:2px; transform:rotate(-2deg);}
+.box:checked::after{
+  content:''; position:absolute; left:4px; top:-4px; width:7px; height:14px;
+  border:solid var(--mark); border-width:0 3px 3px 0; transform:rotate(40deg);
+}
+.pack li.new{grid-template-columns:26px minmax(0,1fr);}
+.pack li.new span{color:var(--soft); font-size:20px; line-height:1; text-align:center;}
+
+.notes{
+  display:block; width:100%; min-height:224px; resize:vertical; margin-top:2px;
+  background-image:linear-gradient(transparent 43px, var(--rule) 43px, var(--rule) 44px);
+  background-size:100% 44px; line-height:44px; padding:0;
+}
+.notes:focus{outline:none;}
+.notes::placeholder{color:var(--soft); opacity:.6;}
+
+.small{margin-top:48px; font-size:13.5px; color:var(--soft); max-width:60ch; font-family:'Inter', system-ui, sans-serif;}
+
+/* Toast */
+.toast{position:fixed; left:50%; bottom:24px; transform:translate(-50%,16px); opacity:0; pointer-events:none;
+  background:var(--ink); color:var(--paper); padding:11px 16px; font-size:14.5px; font-family:'Inter', system-ui, sans-serif;
+  transition:opacity .2s ease, transform .2s ease; z-index:50; max-width:calc(100% - 32px);}
+.toast.show{opacity:1; transform:translate(-50%,0);}
+
+/* ---------------------------------------------------------
+   Small screens
+   --------------------------------------------------------- */
+@media (max-width:640px){
+  .page{padding:0 20px 100px;}
+  [data-theme="notebook"] .page{padding-left:52px;}
+  [data-theme="notebook"]{--texture:
+    linear-gradient(90deg, transparent 31px, rgba(208,49,45,.6) 31px, rgba(208,49,45,.6) 33px, transparent 33px),
+    linear-gradient(rgba(31,58,95,.085) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,58,95,.085) 1px, transparent 1px);}
+  .head{padding:44px 0 28px;}
+  .going{font-size:18px;}
+  .day{grid-template-columns:1fr; padding:24px 0 20px;}
+  .date{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .date .n{font-size:44px;}
+  .date .w{margin:0;} .date .w span{display:inline; margin-right:6px;}
+  .forecast{margin:0 0 0 auto; text-align:right;}
+  .forecast b{display:inline;}
+  .line{grid-template-columns:86px minmax(0,1fr) 28px;}
+  .pack{columns:1;}
+}
+
+/* ---------------------------------------------------------
+   Print: the same sheet, without the controls
+   --------------------------------------------------------- */
+@media print{
+  @page{size:A4; margin:14mm 14mm 16mm;}
+  body{background:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:12pt;}
+  [data-theme="night"]{--paper:#fff; --ink:#151937; --soft:#55587A; --rule:#CCCCDD; --day:#AEB9EA; --night:#151937;}
+  [data-theme="notebook"] body{background-image:var(--texture) !important; background-size:var(--tsize) !important;}
+  .page{max-width:none; padding:0;}
+  [data-theme="notebook"] .page{padding-left:64px;}
+  .controls, .doing, .near, .placeline, .starters, .small, .toast, .rm, .pack li.new, .line.blank-line, .sky-empty{display:none !important;}
+  .head{padding:0 0 18px;}
+  .title{font-size:40pt;}
+  .blank{border-bottom-color:transparent;}
+  .day{break-inside:avoid; padding:16px 0 14px;}
+  .part{padding-top:26px; break-inside:avoid;}
+  .notes{min-height:0; resize:none;}
+  input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator{display:none;}
+  .line .t.empty{visibility:hidden;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="controls" aria-label="Planner">
+    <a class="brand" href="/">Sundapple</a>
+    <div class="styles" role="group" aria-label="Paper style"><span>Paper:</span></div>
+  </nav>
+
+  <header class="head">
+    <label for="title" class="sr-only">Trip name</label>
+    <textarea id="title" class="title" rows="1" maxlength="80" placeholder="Name this trip"></textarea>
+
+    <p class="going">
+      <span>Going to</span>
+      <span class="place-wrap">
+        <label for="placeInput" class="sr-only">Place</label>
+        <input id="placeInput" class="blank" type="search" placeholder="somewhere" autocomplete="off" aria-controls="results">
+        <button type="button" class="near" id="nearBtn">or near me</button>
+        <ul id="results" class="results" hidden></ul>
+      </span>
+      <span>from</span>
+      <label for="startDate" class="sr-only">First day</label>
+      <input id="startDate" class="blank" type="date">
+      <span>to</span>
+      <label for="endDate" class="sr-only">Last day</label>
+      <input id="endDate" class="blank" type="date">
+    </p>
+    <p class="placeline" id="placeline"></p>
+
+    <div class="doing">
+      <button type="button" class="print" id="printBtn">Print or save as PDF</button>
+      <button type="button" id="icsBtn">Add to calendar</button>
+      <button type="button" id="shareBtn">Copy link to share</button>
+      <button type="button" class="later" id="saveBtn">Save to a file</button>
+      <button type="button" class="later" id="openBtn">Open a file</button>
+      <button type="button" class="later" id="newBtn">Start again</button>
+      <input type="file" id="fileInput" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="sr-only">Days</h2>
+    <div class="days" id="days"></div>
+
+    <section class="part" aria-labelledby="packH">
+      <h2 id="packH">To pack <small id="packCount"></small></h2>
+      <p class="starters" id="starters">Start from a list for
+        <button type="button" data-preset="walk">a walk</button>,
+        <button type="button" data-preset="beach">the beach</button>,
+        <button type="button" data-preset="camp">camping</button>,
+        <button type="button" data-preset="cycle">cycling</button>,
+        <button type="button" data-preset="swim">a wild swim</button> or
+        <button type="button" data-preset="stars">stargazing</button>.
+      </p>
+      <ul class="pack" id="pack"></ul>
+    </section>
+
+    <section class="part" aria-labelledby="notesH">
+      <h2 id="notesH">Notes</h2>
+      <label for="notes" class="sr-only">Notes</label>
+      <textarea id="notes" class="notes" placeholder="Parking, trains, who's bringing what"></textarea>
+    </section>
+
+    <p class="small">This plan is kept in this browser and nowhere else. Place search and weather come from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Sunrise and sunset are worked out on your device.</p>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+
+var THEMES = [
+  {id:'sundapple', name:'Sundapple', color:'#EEF2F0', fonts:null},
+  {id:'notebook',  name:'Notebook',  color:'#F4F7F2', fonts:'family=Kalam:wght@400;700'},
+  {id:'trail',     name:'Trail map', color:'#E2E9D8', fonts:'family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700'},
+  {id:'night',     name:'Night',     color:'#151937', fonts:'family=Young+Serif&family=Atkinson+Hyperlegible:wght@400;700'},
+  {id:'coast',     name:'Tide table',color:'#E1EFF2', fonts:'family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700'}
+];
+var loaded = {};
+function loadFonts(t){
+  if(!t.fonts || loaded[t.id]) return;
+  var l = document.createElement('link'); l.rel='stylesheet';
+  l.href = 'https://fonts.googleapis.com/css2?' + t.fonts + '&display=swap';
+  l.onload = function(){ regrow(); };
+  document.head.appendChild(l); loaded[t.id] = true;
+}
+
+/* ---------- state ---------- */
+var STORE = 'sundapple-planner-v1', state, dayMs = 864e5;
+function iso(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function parseISO(s){ var p=s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+function addDays(d,n){ var x=new Date(d); x.setDate(x.getDate()+n); return x; }
+
+function fresh(){
+  var t = new Date(); t.setHours(0,0,0,0);
+  var sat = t.getDay()===6 ? t : addDays(t, (6 - t.getDay() + 7) % 7);
+  return {v:1, title:'', place:null, start:iso(sat), end:iso(addDays(sat,1)), days:{}, pack:[], notes:'',
+          theme:document.documentElement.getAttribute('data-theme') || 'sundapple'};
+}
+function clean(s){
+  var d = fresh();
+  if(!s || typeof s!=='object') return d;
+  var o = {v:1,
+    title: typeof s.title==='string' ? s.title.slice(0,80) : '',
+    place: (s.place && isFinite(s.place.lat) && isFinite(s.place.lon)) ? {name:String(s.place.name||'Chosen place').slice(0,120), detail:String(s.place.detail||'').slice(0,160), lat:+s.place.lat, lon:+s.place.lon, tz:typeof s.place.tz==='string'?s.place.tz:null} : null,
+    start: /^\d{4}-\d{2}-\d{2}$/.test(s.start)?s.start:d.start,
+    end: /^\d{4}-\d{2}-\d{2}$/.test(s.end)?s.end:d.end,
+    days:{}, pack:[], notes: typeof s.notes==='string'?s.notes.slice(0,5000):'',
+    theme: THEMES.some(function(t){return t.id===s.theme;}) ? s.theme : d.theme};
+  if(s.days && typeof s.days==='object') Object.keys(s.days).forEach(function(k){
+    if(/^\d{4}-\d{2}-\d{2}$/.test(k) && Array.isArray(s.days[k]))
+      o.days[k] = s.days[k].slice(0,30).map(function(p){ return {t:/^\d{2}:\d{2}$/.test(p&&p.t)?p.t:'', x:String((p&&p.x)||'').slice(0,200)}; }).filter(function(p){ return p.t || p.x; });
+  });
+  if(Array.isArray(s.pack)) o.pack = s.pack.slice(0,150).map(function(p){ return {x:String((p&&p.x)||'').slice(0,120), d:!!(p&&p.d)}; }).filter(function(p){ return p.x; });
+  return o;
+}
+var saveT;
+function save(){ clearTimeout(saveT); saveT = setTimeout(function(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }, 250); }
+
+/* ---------- share links ---------- */
+function b64(bytes){ var s=''; for(var i=0;i<bytes.length;i++) s+=String.fromCharCode(bytes[i]); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+function unb64(s){ s=s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='='; var b=atob(s), o=new Uint8Array(b.length); for(var i=0;i<b.length;i++) o[i]=b.charCodeAt(i); return o; }
+async function pack(obj){
+  var bytes = new TextEncoder().encode(JSON.stringify(obj));
+  if(window.CompressionStream){ try{
+    var out = new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer());
+    return 'z'+b64(out);
+  }catch(e){} }
+  return 'j'+b64(bytes);
+}
+async function unpack(str){
+  var bytes = unb64(str.slice(1));
+  if(str[0]==='z') return JSON.parse(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text());
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+/* ---------- sun (after SunCalc by V. Agafonkin, BSD-2) ---------- */
+var rad=Math.PI/180, J1970=2440588, J2000=2451545, ob=rad*23.4397, J0=0.0009;
+function sun(date, lat, lng){
+  var lw=rad*-lng, phi=rad*lat, d=date.valueOf()/dayMs - 0.5 + J1970 - J2000;
+  var n=Math.round(d - J0 - lw/(2*Math.PI)), ds=J0 + lw/(2*Math.PI) + n;
+  var M=rad*(357.5291 + 0.98560028*ds);
+  var L=M + rad*(1.9148*Math.sin(M) + 0.02*Math.sin(2*M) + 0.0003*Math.sin(3*M)) + rad*102.9372 + Math.PI;
+  var dec=Math.asin(Math.sin(ob)*Math.sin(L));
+  var Jnoon=J2000 + ds + 0.0053*Math.sin(M) - 0.0069*Math.sin(2*L);
+  var from=function(j){ return new Date((j + 0.5 - J1970)*dayMs); };
+  function at(h){
+    var w=Math.acos((Math.sin(h*rad) - Math.sin(phi)*Math.sin(dec)) / (Math.cos(phi)*Math.cos(dec)));
+    if(isNaN(w)) return null;
+    var Jset=J2000 + J0 + (w + lw)/(2*Math.PI) + n + 0.0053*Math.sin(M) - 0.0069*Math.sin(2*L);
+    return {rise:from(Jnoon - (Jset - Jnoon)), set:from(Jset)};
+  }
+  var s=at(-0.833);
+  return {sun:s, gold:at(6), polar: s ? null : ((90 - Math.abs(lat - dec/rad)) > 0 ? 'day' : 'night')};
+}
+function zone(){ return (state.place && state.place.tz) || Intl.DateTimeFormat().resolvedOptions().timeZone; }
+function mins(date){
+  var p=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZone:zone()}).formatToParts(date);
+  return +p.find(function(x){return x.type==='hour';}).value*60 + +p.find(function(x){return x.type==='minute';}).value;
+}
+function clock(date){ return new Intl.DateTimeFormat(undefined,{hour:'numeric',minute:'2-digit',timeZone:zone()}).format(date); }
+function todayThere(){ return new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:zone()}).format(new Date()); }
+
+/* ---------- weather ---------- */
+var weather={}, wKey='';
+var WMO={0:'Clear',1:'Mostly clear',2:'Some cloud',3:'Overcast',45:'Fog',48:'Freezing fog',51:'Drizzle',53:'Drizzle',55:'Heavy drizzle',56:'Freezing drizzle',57:'Freezing drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',66:'Freezing rain',67:'Freezing rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow',80:'Showers',81:'Showers',82:'Heavy showers',85:'Snow showers',86:'Snow showers',95:'Thunder',96:'Thunder and hail',99:'Thunder and hail'};
+function getWeather(){
+  if(!state.place){ weather={}; return; }
+  var today=parseISO(todayThere()), last=addDays(today,15), s=parseISO(state.start), e=parseISO(state.end);
+  if(e<today || s>last){ weather={}; return; }
+  var a=s<today?today:s, b=e>last?last:e;
+  var key=state.place.lat.toFixed(3)+state.place.lon.toFixed(3)+iso(a)+iso(b);
+  if(key===wKey) return; wKey=key;
+  fetch('https://api.open-meteo.com/v1/forecast?latitude='+state.place.lat+'&longitude='+state.place.lon+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&start_date='+iso(a)+'&end_date='+iso(b))
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(j){ if(key!==wKey) return; weather={}; var d=j.daily||{};
+      (d.time||[]).forEach(function(t,i){ weather[t]={c:d.weather_code[i], hi:d.temperature_2m_max[i], lo:d.temperature_2m_min[i], p:d.precipitation_probability_max[i]}; });
+      drawDays(); })
+    .catch(function(){ wKey=''; });
+}
+
+/* ---------- drawing ---------- */
+var $=function(id){ return document.getElementById(id); };
+function el(tag, a, kids){
+  var n=document.createElement(tag);
+  if(a) for(var k in a){ var v=a[k]; if(v==null) continue;
+    if(k==='class') n.className=v; else if(k==='text') n.textContent=v; else if(k==='style') n.style.cssText=v; else n.setAttribute(k,v); }
+  (kids||[]).forEach(function(c){ if(c!=null) n.appendChild(typeof c==='string'?document.createTextNode(c):c); });
+  return n;
+}
+function dayList(){
+  var s=parseISO(state.start), e=parseISO(state.end), out=[];
+  if(e<s) e=s;
+  for(var d=new Date(s), i=0; d<=e && i<14; d=addDays(d,1), i++) out.push(iso(d));
+  return out;
+}
+
+function drawSky(dIso){
+  var box=el('div',{class:'sky'});
+  if(!state.place){
+    box.className='sky-empty';
+    box.textContent='Add a place above to see when it gets light and dark.';
+    return box;
+  }
+  var noon=parseISO(dIso); noon.setHours(12);
+  var t=sun(noon, state.place.lat, state.place.lon);
+  var line=el('div',{class:'sky-line', role:'img'});
+  var at=function(m){ return (m/14.4).toFixed(2)+'%'; };
+  var seg=function(c,a,b){ line.appendChild(el('span',{class:'sky-seg '+c, style:'left:'+at(a)+';width:'+((b-a)/14.4).toFixed(2)+'%'})); };
+  var note;
+
+  if(t.polar==='day'){ seg('sky-day',0,1440); note='The sun doesn’t set today.'; line.setAttribute('aria-label',note); }
+  else if(t.polar==='night'){ note='The sun doesn’t rise today.'; line.setAttribute('aria-label',note); }
+  else {
+    var r=mins(t.sun.rise), s=mins(t.sun.set);
+    var gm=t.gold?mins(t.gold.rise):(r+s)/2, ge=t.gold?mins(t.gold.set):(r+s)/2;
+    seg('sky-gold', r, s); seg('sky-day', gm, ge);
+    box.appendChild(el('span',{class:'sky-time l', style:'left:'+at(r), text:'↑ '+clock(t.sun.rise)}));
+    box.appendChild(el('span',{class:'sky-time r', style:'left:'+at(s), text:clock(t.sun.set)+' ↓'}));
+    var len=Math.round((t.sun.set-t.sun.rise)/60000);
+    note = Math.floor(len/60)+' h '+String(len%60).padStart(2,'0')+' of daylight'+(t.gold?'. Evening golden hour from '+clock(t.gold.set):'')+'.';
+    line.setAttribute('aria-label','Sunrise '+clock(t.sun.rise)+', sunset '+clock(t.sun.set)+'. '+note);
+  }
+  (state.days[dIso]||[]).forEach(function(p){
+    if(p.t) line.appendChild(el('span',{class:'sky-plan', style:'left:'+at(+p.t.slice(0,2)*60 + +p.t.slice(3)), title:p.t+(p.x?' '+p.x:'')}));
+  });
+  if(dIso===todayThere()) line.appendChild(el('span',{class:'sky-now', style:'left:'+at(mins(new Date())), title:'Now'}));
+  box.appendChild(line);
+  box.appendChild(el('p',{class:'sky-note', text:note}));
+  return box;
+}
+
+function drawDays(){
+  var host=$('days'), keep=document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.k : null;
+  host.innerHTML='';
+  var wd=new Intl.DateTimeFormat(undefined,{weekday:'long'}), mo=new Intl.DateTimeFormat(undefined,{month:'long'});
+  dayList().forEach(function(dIso){
+    var date=parseISO(dIso), plans=state.days[dIso] || (state.days[dIso]=[]), w=weather[dIso];
+    var side=el('div',{class:'date'},[
+      el('span',{class:'n', text:String(date.getDate())}),
+      el('span',{class:'w'},[el('span',{text:wd.format(date)}), (date.getDate()===1 || dIso===state.start) ? el('span',{text:mo.format(date)}) : null]),
+      w ? el('p',{class:'forecast'},[el('b',{text:WMO[w.c]||'Forecast'}), Math.round(w.hi)+'° / '+Math.round(w.lo)+'°'+(w.p!=null?', rain '+w.p+'%':'')]) : null
+    ]);
+
+    var ul=el('ul',{class:'lines'});
+    plans.forEach(function(p,i){ ul.appendChild(drawLine(dIso, p, i)); });
+    ul.appendChild(drawBlankLine(dIso));
+
+    host.appendChild(el('section',{class:'day', 'aria-label':wd.format(date)+' '+date.getDate()+' '+mo.format(date)},[side, el('div',{},[drawSky(dIso), ul])]));
+  });
+  if(keep){ var f=host.querySelector('[data-k="'+keep+'"]'); if(f) f.focus(); }
+}
+
+function drawLine(dIso, p, i){
+  var t=el('input',{class:'t'+(p.t?'':' empty'), type:'time', value:p.t, 'aria-label':'Time', 'data-k':dIso+'t'+i});
+  t.addEventListener('change', function(){ p.t=this.value; order(dIso); save(); drawDays(); });
+  var x=el('input',{class:'x', value:p.x, maxlength:'200', 'aria-label':'Plan', 'data-k':dIso+'x'+i});
+  x.addEventListener('input', function(){ p.x=this.value; save(); });
+  x.addEventListener('blur', function(){ if(!p.x && !p.t){ var a=state.days[dIso]; var j=a.indexOf(p); if(j>-1){ a.splice(j,1); save(); setTimeout(drawDays,0); } } });
+  x.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); var n=document.querySelector('[data-k="'+dIso+'new"]'); if(n) n.focus(); } });
+  var rm=el('button',{class:'rm', type:'button', 'aria-label':'Remove '+(p.x||'this line'), text:'×'});
+  rm.addEventListener('click', function(){ state.days[dIso].splice(i,1); save(); drawDays(); });
+  return el('li',{class:'line'},[t,x,rm]);
+}
+function drawBlankLine(dIso){
+  var x=el('input',{class:'x', placeholder:'Add a plan', maxlength:'200', 'aria-label':'Add a plan', 'data-k':dIso+'new'});
+  function commit(){
+    var v=x.value.trim(); if(!v) return false;
+    (state.days[dIso] || (state.days[dIso]=[])).push({t:'', x:v}); save(); return true;
+  }
+  x.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); if(commit()){ drawDays(); var n=document.querySelector('[data-k="'+dIso+'new"]'); if(n) n.focus(); } } });
+  x.addEventListener('blur', function(){ if(commit()) setTimeout(drawDays,0); });
+  return el('li',{class:'line blank-line'},[el('span',{class:'t empty', 'aria-hidden':'true'}), x]);
+}
+function order(dIso){
+  state.days[dIso].sort(function(a,b){ if(!a.t&&!b.t) return 0; if(!a.t) return 1; if(!b.t) return -1; return a.t<b.t?-1:a.t>b.t?1:0; });
+}
+
+function drawPack(){
+  var ul=$('pack'); ul.innerHTML='';
+  state.pack.forEach(function(it,i){
+    var li=el('li',{class:it.d?'got':''});
+    var cb=el('input',{class:'box', type:'checkbox', 'aria-label':'Packed '+it.x}); cb.checked=it.d;
+    cb.addEventListener('change', function(){ it.d=this.checked; li.classList.toggle('got', it.d); save(); count(); });
+    var tx=el('input',{class:'item', value:it.x, maxlength:'120', 'aria-label':'Item'});
+    tx.addEventListener('input', function(){ it.x=this.value; save(); });
+    tx.addEventListener('blur', function(){ if(!it.x.trim()){ state.pack.splice(state.pack.indexOf(it),1); save(); setTimeout(drawPack,0); } });
+    var rm=el('button',{class:'rm', type:'button', 'aria-label':'Remove '+it.x, text:'×'});
+    rm.addEventListener('click', function(){ state.pack.splice(i,1); save(); drawPack(); });
+    li.appendChild(cb); li.appendChild(tx); li.appendChild(rm);
+    ul.appendChild(li);
+  });
+  var nx=el('input',{class:'item', placeholder:'Add something', maxlength:'120', 'aria-label':'Add something to pack', id:'packNew'});
+  nx.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); var v=nx.value.trim(); if(!v) return; state.pack.push({x:v,d:false}); save(); drawPack(); $('packNew').focus(); } });
+  nx.addEventListener('blur', function(){ var v=nx.value.trim(); if(v){ state.pack.push({x:v,d:false}); save(); setTimeout(drawPack,0); } });
+  ul.appendChild(el('li',{class:'new'},[el('span',{text:'+', 'aria-hidden':'true'}), nx]));
+  count();
+}
+function count(){
+  var n=state.pack.length, d=state.pack.filter(function(p){return p.d;}).length;
+  $('packCount').textContent = n ? (d===n ? 'All packed' : d+' of '+n+' packed') : '';
+}
+var LISTS={
+  walk:['Waterproof jacket','Walking boots','Water','Snacks','Phone, charged','Offline map','Hat and gloves','Plasters'],
+  beach:['Suncream','Towel','Swimmers','Sunglasses','Water','Windbreak','Something to sit on','Bag for rubbish'],
+  camp:['Tent','Sleeping bag','Sleeping mat','Head torch','Stove and gas','Lighter','Pan and cutlery','Warm layers','Water','Food for every meal','Bin bags'],
+  cycle:['Helmet','Lights','Spare inner tube','Pump','Multi-tool','Water','Lock','Rain jacket','Snacks'],
+  swim:['Swimmers','Changing robe','Towel','Hot drink in a flask','Tow float','Swim shoes','Woolly hat','Dry bag'],
+  stars:['Warm layers','Blanket or chair','Red torch','Hot drink','Star map','Binoculars','Gloves']
+};
+function addList(k){
+  var have={}; state.pack.forEach(function(p){ have[p.x.trim().toLowerCase()]=1; });
+  var n=0; LISTS[k].forEach(function(x){ if(!have[x.toLowerCase()]){ state.pack.push({x:x,d:false}); n++; } });
+  save(); drawPack();
+  toast(n ? n+' added to your list' : 'Already on your list');
+}
+
+function drawPlace(){
+  $('placeInput').value = state.place ? state.place.name : '';
+  sizePlace();
+  $('placeline').textContent = state.place ? (state.place.detail ? state.place.detail+'. ' : '') + 'Times are local to this place.' : '';
+}
+function sizePlace(){ var i=$('placeInput'); i.style.width = Math.max(9, (i.value||i.placeholder).length + 2)+'ch'; }
+
+function drawStyles(){
+  var g=document.querySelector('.styles');
+  g.querySelectorAll('button').forEach(function(b){ b.remove(); });
+  THEMES.forEach(function(t){
+    var b=el('button',{type:'button', 'aria-pressed':String(state.theme===t.id), text:t.name});
+    b.addEventListener('click', function(){ setTheme(t.id); });
+    g.appendChild(b);
+  });
+}
+function setTheme(id){
+  var t=THEMES.find(function(x){return x.id===id;}) || THEMES[0];
+  state.theme=t.id; loadFonts(t);
+  document.documentElement.setAttribute('data-theme', t.id);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', t.color);
+  try{ localStorage.setItem('sundapple-planner-theme', t.id); }catch(e){}
+  document.querySelectorAll('.styles button').forEach(function(b,i){ b.setAttribute('aria-pressed', String(THEMES[i].id===t.id)); });
+  save(); regrow();
+}
+
+function regrow(){ var a=$('title'); if(!a) return; a.style.height='auto'; a.style.height=a.scrollHeight+'px'; }
+function drawAll(){
+  $('title').value=state.title; $('startDate').value=state.start; $('endDate').value=state.end; $('notes').value=state.notes;
+  setTheme(state.theme); drawStyles(); drawPlace(); drawDays(); drawPack(); getWeather(); regrow();
+  document.title=(state.title?state.title+' — ':'')+'Trip planner — Sundapple';
+}
+
+/* ---------- place search ---------- */
+var sT, seq=0;
+function hide(){ var r=$('results'); r.hidden=true; r.innerHTML=''; }
+function choose(p){ state.place=p; save(); hide(); drawPlace(); wKey=''; drawDays(); getWeather(); }
+$('placeInput').addEventListener('input', function(){
+  sizePlace();
+  var q=this.value.trim(); clearTimeout(sT);
+  if(q.length<2){ hide(); return; }
+  sT=setTimeout(function(){
+    var my=++seq;
+    fetch('https://geocoding-api.open-meteo.com/v1/search?count=6&language='+encodeURIComponent((navigator.language||'en').slice(0,2))+'&name='+encodeURIComponent(q))
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(j){
+        if(my!==seq) return;
+        var r=$('results'); r.innerHTML='';
+        var list=j.results||[];
+        if(!list.length){ r.appendChild(el('li',{},[el('button',{type:'button', disabled:'', text:'Nothing found. Try the nearest town.'})])); r.hidden=false; return; }
+        list.forEach(function(x){
+          var detail=[x.admin1, x.country].filter(Boolean).join(', ');
+          var b=el('button',{type:'button'},[x.name+' ', el('small',{text:detail})]);
+          b.addEventListener('click', function(){ choose({name:x.name, detail:detail, lat:x.latitude, lon:x.longitude, tz:x.timezone||null}); });
+          r.appendChild(el('li',{},[b]));
+        });
+        r.hidden=false;
+      })
+      .catch(function(){ if(my===seq) toast('Place search isn’t working right now. Try “or near me”.'); });
+  }, 280);
+});
+$('placeInput').addEventListener('keydown', function(e){
+  if(e.key==='Escape') hide();
+  if(e.key==='ArrowDown' || e.key==='Enter'){ var f=$('results').querySelector('button:not([disabled])'); if(f){ e.preventDefault(); if(e.key==='Enter') f.click(); else f.focus(); } }
+});
+$('results').addEventListener('keydown', function(e){
+  var b=[].slice.call(this.querySelectorAll('button')), i=b.indexOf(document.activeElement);
+  if(e.key==='ArrowDown' && i<b.length-1){ e.preventDefault(); b[i+1].focus(); }
+  if(e.key==='ArrowUp'){ e.preventDefault(); (i>0?b[i-1]:$('placeInput')).focus(); }
+  if(e.key==='Escape'){ hide(); $('placeInput').focus(); }
+});
+document.addEventListener('click', function(e){ if(!e.target.closest('.place-wrap')) hide(); });
+$('nearBtn').addEventListener('click', function(){
+  if(!navigator.geolocation){ toast('This browser can’t share its location. Type a place instead.'); return; }
+  navigator.geolocation.getCurrentPosition(function(p){
+    choose({name:'near me', detail:'', lat:p.coords.latitude, lon:p.coords.longitude, tz:Intl.DateTimeFormat().resolvedOptions().timeZone});
+  }, function(){ toast('Location is blocked for this site. Type a place instead.'); }, {timeout:10000, maximumAge:600000});
+});
+
+/* ---------- other inputs ---------- */
+$('title').addEventListener('input', function(){
+  this.value=this.value.replace(/\n/g,' '); state.title=this.value; regrow(); save();
+  document.title=(state.title?state.title+' — ':'')+'Trip planner — Sundapple';
+});
+$('title').addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); this.blur(); } });
+$('notes').addEventListener('input', function(){ state.notes=this.value; save(); });
+function dates(){
+  var s=$('startDate').value, e=$('endDate').value;
+  if(!s) return;
+  if(!e || e<s){ e=s; $('endDate').value=s; }
+  if((parseISO(e)-parseISO(s))/dayMs > 13){ e=iso(addDays(parseISO(s),13)); $('endDate').value=e; toast('A plan can cover up to 14 days'); }
+  state.start=s; state.end=e; save(); drawDays(); getWeather();
+}
+$('startDate').addEventListener('change', dates);
+$('endDate').addEventListener('change', dates);
+document.querySelectorAll('[data-preset]').forEach(function(b){ b.addEventListener('click', function(){ addList(b.dataset.preset); }); });
+
+/* ---------- exports ---------- */
+function fname(ext){ return ((state.title||'trip').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'trip')+'.'+ext; }
+function download(name, text, type){
+  var u=URL.createObjectURL(new Blob([text],{type:type})), a=el('a',{href:u, download:name});
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(u); }, 2000);
+}
+$('printBtn').addEventListener('click', function(){ window.print(); });
+
+function esc(s){ return String(s).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;'); }
+function fold(l){ var o=''; while(l.length>74){ o+=l.slice(0,74)+'\r\n '; l=l.slice(74); } return o+l; }
+$('icsBtn').addEventListener('click', function(){
+  var stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,''), tag=Math.random().toString(36).slice(2,8), n=0, timed=0;
+  var where=state.place && state.place.name!=='near me' ? state.place.name+(state.place.detail?', '+state.place.detail:'') : '';
+  var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Sundapple//Trip planner//EN','CALSCALE:GREGORIAN'];
+  function ev(p){ L.push('BEGIN:VEVENT','UID:'+(n++)+'-'+tag+'@sundappleapp.com','DTSTAMP:'+stamp); p.filter(Boolean).forEach(function(x){ L.push(fold(x)); }); L.push('END:VEVENT'); }
+  var summary=dayList().map(function(d){ var ps=(state.days[d]||[]).filter(function(p){return p.x;}).map(function(p){ return (p.t?p.t+' ':'')+p.x; }); return ps.length?d+': '+ps.join('; '):null; }).filter(Boolean).join('\n');
+  ev(['DTSTART;VALUE=DATE:'+state.start.replace(/-/g,''), 'DTEND;VALUE=DATE:'+iso(addDays(parseISO(state.end),1)).replace(/-/g,''),
+      'SUMMARY:'+esc(state.title||'Trip'), where?'LOCATION:'+esc(where):null, 'DESCRIPTION:'+esc([summary, state.notes].filter(Boolean).join('\n\n'))]);
+  var tz=state.place && state.place.tz;
+  dayList().forEach(function(d){ (state.days[d]||[]).forEach(function(p){
+    if(!p.t || !p.x) return; timed++;
+    var end=parseISO(d); end.setHours(+p.t.slice(0,2)+1, +p.t.slice(3));
+    var s=d.replace(/-/g,'')+'T'+p.t.replace(':','')+'00', e=iso(end).replace(/-/g,'')+'T'+String(end.getHours()).padStart(2,'0')+String(end.getMinutes()).padStart(2,'0')+'00';
+    ev([(tz?'DTSTART;TZID='+tz+':':'DTSTART:')+s, (tz?'DTEND;TZID='+tz+':':'DTEND:')+e, 'SUMMARY:'+esc(p.x), where?'LOCATION:'+esc(where):null]);
+  }); });
+  L.push('END:VCALENDAR');
+  download(fname('ics'), L.join('\r\n'), 'text/calendar');
+  toast(timed ? 'Calendar file downloaded, with '+timed+' timed plan'+(timed>1?'s':'') : 'Calendar file downloaded. Give plans a time to make them separate events.');
+});
+$('shareBtn').addEventListener('click', async function(){
+  try{
+    var code=await pack(state), url=location.origin+location.pathname+'#p='+code;
+    if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(url); toast('Link copied. Anyone with it gets their own copy of this plan.'); }
+    else { history.replaceState(null,'','#p='+code); toast('The link is in your address bar'); }
+  }catch(e){ toast('Couldn’t make a link. Use “Save to a file” instead.'); }
+});
+$('saveBtn').addEventListener('click', function(){ download(fname('json'), JSON.stringify({app:'sundapple-planner', plan:state}, null, 2), 'application/json'); toast('Saved to a file'); });
+$('openBtn').addEventListener('click', function(){ $('fileInput').click(); });
+$('fileInput').addEventListener('change', function(){
+  var f=this.files && this.files[0]; this.value=''; if(!f) return;
+  if(f.size>500000){ toast('That file is too big to be a plan'); return; }
+  f.text().then(function(t){ var j=JSON.parse(t); if(!j || j.app!=='sundapple-planner') throw 0; state=clean(j.plan); save(); wKey=''; drawAll(); toast('Plan opened'); })
+   .catch(function(){ toast('That file isn’t a Sundapple plan'); });
+});
+$('newBtn').addEventListener('click', function(){
+  var used=state.title || state.notes || state.pack.length || Object.keys(state.days).some(function(k){ return state.days[k].length; });
+  if(used && !window.confirm('Start again with a blank plan? This one will be cleared unless you’ve saved it to a file.')) return;
+  var th=state.theme; state=fresh(); state.theme=th; save(); wKey=''; weather={}; drawAll(); $('title').focus();
+});
+
+var tT;
+function toast(m){ var t=$('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(tT); tT=setTimeout(function(){ t.classList.remove('show'); }, 2800); }
+
+/* ---------- start ---------- */
+async function start(){
+  var m=location.hash.match(/^#p=([A-Za-z0-9_-]+)$/);
+  if(m){
+    try{ state=clean(await unpack(m[1])); history.replaceState(null,'',location.pathname); save(); drawAll(); toast('Shared plan opened. Your changes stay on this device.'); return; }
+    catch(e){ toast('That link didn’t open. It may have been cut short.'); }
+  }
+  try{ state=clean(JSON.parse(localStorage.getItem(STORE))); }catch(e){ state=fresh(); }
+  drawAll();
+}
+start();
+window.addEventListener('resize', regrow);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(regrow);
+
+})();
+</script>
+</body>
+</html>
